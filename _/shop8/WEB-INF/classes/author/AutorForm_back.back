@@ -1,0 +1,48 @@
+package autor;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.*;
+import org.apache.struts.validator.*;
+
+import tools.*;
+
+/*
+   <b>ActionForm</b>
+*/
+public class AutorForm extends ValidatorForm
+{
+   private Autor autor;
+   private java.util.logging.Logger logger = LoggerInitiator.getLogger();
+
+   public void setAutor(Autor autor)
+   { this.autor = autor; }
+
+   public Autor getAutor()
+   { return this.autor; }
+
+
+   /**
+   * Reset all properties to their default values.
+   * @param mapping The mapping used to select this instance
+   * @param request The servlet request we are processing
+   */
+   public void reset(ActionMapping mapping, HttpServletRequest request)
+   { this.autor = new Autor();  }
+
+/*
+   public ActionErrors validate(ActionMapping mapping,
+   HttpServletRequest request)
+   {
+      ActionErrors errors = new ActionErrors();
+      if ((autor.getVorname() == null) || (autor.getVorname().length() < 3))
+      { errors.add("firstname", new ActionError("error.autor.firstname")); }
+
+      if ((autor.getName() == null) || (autor.getName().length() < 3))
+      { errors.add("lastname", new ActionError("error.autor.lastname")); }
+
+      if (autor.getId() <= 0)
+      { errors.add("id", new ActionError("error.autor.id")); }
+      return errors;
+   }
+*/
+}
+

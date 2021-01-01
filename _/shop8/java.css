@@ -1,0 +1,17 @@
+body {
+  background:#BBBBFF;
+  Font-Family : 'Arial', Garamond, Serif ! important;
+}
+
+
+a{
+        Color:#2F0017 ! important;
+        Font-Family : 'Arial', Garamond, Serif ! important;
+        Font-Size : 12pt ! important;
+}
+
+a.active{
+        Color:yellow ! important;
+        Font-Family : 'Times New Roman', Garamond, Serif ! important;
+        Font-Size : 10pt ! important;
+}

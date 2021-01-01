@@ -1,0 +1,65 @@
+<project name="strutsshop" default="all" basedir=".">
+
+<!-- Global Properties -->
+<property name="api" value="api"/>
+<property name="src" value="."/>
+
+
+<!-- Compilation Tasks -->
+<target name="init">
+ <mkdir dir="${api}"/>
+</target>
+
+
+<path id="base.classpath">
+   <pathelement path="servlet.jar"/>
+   <pathelement path="${src}"/>
+   <fileset dir="../lib/">
+      <include name="*.jar"/>
+   </fileset> 
+</path>
+
+
+
+<target name="all" depends="init">
+<!--
+   <javac srcdir="${src}" destdir="${build}"
+      includes="de/stephanwiesner/**"
+       debug="on"
+   >
+      <classpath refid="base.classpath" />   
+   </javac>
+-->
+</target>
+
+<!-- Javadoc -->
+<target name="javadoc" depends="init">
+  <javadoc packagenames="author.*,book.*,customer.*,exceptions.*"
+           sourcepath="${src}"
+           destdir="${api}"
+           author="true"
+           version="true"
+           use="true"
+           access="private"
+           overview="overview.html"
+           windowtitle="Struts Shop API">
+            <classpath refid="base.classpath" /> 
+    <doctitle><![CDATA[<h1>Shop</h1>]]></doctitle>
+    <bottom><![CDATA[<i>Copyright &#169; 2003 Stephan Wiesner. All Rights 
+      Reserved.</i>]]></bottom>
+    <link offline="false" href="http://java.sun.com/products/jdk/1.2/docs/api/"/>
+    <link href="http://developer.java.sun.com/developer/products/xml/docs/api/"/>
+  </javadoc>  
+</target>  
+
+
+<taskdef name="strutsdoc" classname="strutsdoc.Main" 
+   classpathref="base.classpath"/>
+<target name="run-strutsdoc">
+  <strutsdoc destdir="api/struts" webxml="../web.xml">
+     <plugin name="tiles"/>
+  </strutsdoc>
+</target>
+
+</project>
+

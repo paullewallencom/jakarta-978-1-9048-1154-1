@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+
+
+
+
+<struts-config>
+
+
+
+<data-sources>
+<!-- configuration for commons BasicDataSource -->
+<data-source type="org.apache.commons.dbcp.BasicDataSource">
+    <set-property
+      property="driverClassName"
+      value="com.mysql.jdbc.Driver" />
+    <set-property
+      property="url"
+      value="jdbc:mysql://127.0.0.1:3306/shop1" />
+     <set-property
+                    property="username"
+                    value="immorate" />
+                  <set-property
+                    property="password"
+                 value="immorute" />  
+    
+  <set-property
+      property="maxActive"
+      value="10" />
+    <set-property
+      property="maxWait"
+      value="5000" />
+    <set-property
+      property="defaultAutoCommit"
+      value="true" />
+    <set-property
+      property="defaultReadOnly"
+      value="false" />
+    <set-property
+      property="validationQuery"
+      value="SELECT COUNT(*) FROM author" />
+</data-source>
+</data-sources>
+
+
+
+<!-- ======================================== 
+Form Bean Definitions -->
+   <form-beans>
+      <form-bean name="bookForm" type="book.BookForm"/>
+      <form-bean name="authorForm" type="author.AuthorForm"/>
+   </form-beans>
+
+   
+
+<global-exceptions>
+    <exception 
+      key="error.duplicateKey" 
+      type="exceptions.DuplicateKeyException" 
+      handler="exceptions.DuplicateKeyExceptionHandler" />
+</global-exceptions>
+
+   
+<!-- =================================== Global Forward 
+   Definitions -->
+   <global-forwards>
+      <forward name="authorCreated" path="/admin/AuthorView.jsp"/>
+      <forward name="bookCreated" path="/admin/BookView.jsp"/>
+      <forward name="duplicateKey" path="/errors/duplicateKeyError.jsp" />
+   </global-forwards>
+
+<!-- =================================== Action Mapping Definitions -->
+   <action-mappings>
+      <action path="/createBook"
+         type="book.BookAction"
+         name="bookForm"
+         scope="request"
+         input="/BookCreate.jsp">
+      </action>
+      
+      <action path="/createAuthor"
+         type="author.AuthorAction"
+         name="authorForm"
+         scope="request"
+         validate="true"
+         input="/AuthorCreate.jsp">
+      </action>
+      
+   </action-mappings>
+
+
+
+
+
+<!-- ===================================== Controller Configuration -->
+
+
+
+    <controller
+
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+
+
+
+
+<!-- ================================ Message Resources Definitions -->
+
+
+
+    <message-resources parameter="resources.application"/>
+
+
+
+
+
+<!-- ======================================= Plug Ins Configuration -->
+
+
+  <!-- ========== Tiles plugin ===================  -->
+  <!--												-->
+  <!--
+     This plugin initialize Tiles definition factory. This later can takes some
+	 parameters explained here after. The plugin first read parameters from web.xml, then
+	 overload them with parameters defined here. All parameters are optional.
+	 The plugin should be declared in each struts-config file.
+       - definitions-config: (optional) 
+            Specify configuration file names. There can be several comma 
+		    separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1) 
+            Specify if the Tiles definition factory is module aware. If true (default), 
+			there will be one factory for each Struts module. 
+			If false, there will be one common factory for all module. In this later case, 
+			it is still needed to declare one plugin per module. The factory will be 
+			initialized with parameters found in the first initialized plugin (generally the
+			one associated with the default module).
+			  true : One factory per module. (default)
+			  false : one single shared factory for all modules
+	   - definitions-parser-validate: (optional)
+	        Specify if xml parser should validate the Tiles configuration file.
+			  true : validate. DTD should be specified in file header. (default)
+			  false : no validation
+			  
+	  Paths found in Tiles definitions are relative to the main context.
+  -->
+  <!-- comment following if struts1.0.x -->
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+
+  <!-- end comment if struts1.0.x -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+  </plug-in>
+
+</struts-config>
+

@@ -1,0 +1,62 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>action</title>
+<script type="text/javascript">
+<!-- hide the script from old browsesr
+        
+        
+        // This script is a part of:
+        // Morten's JavaScript Tree Menu
+        // version 2.3.2, dated 2002-02-24
+        // http://www.treemenu.com/
+        
+        // Copyright (c) 2001-2002, Morten Wang & contributors
+        // All rights reserved.
+        
+        // This software is released under the BSD License which should accompany
+        // it in the file "COPYING".  If you do not have this file you can access
+        // the license through the WWW at http://www.treemenu.com/license.txt
+        
+        var MTMUsableBrowser = false;
+        // browser sniffing routine
+        browserName = navigator.appName;
+        browserVersion = parseInt(navigator.appVersion);
+        if(browserName == "Netscape" && browserVersion >= 3) {
+          MTMUsableBrowser = (navigator.userAgent.indexOf("Opera") == -1) ? true : false;
+        } else if(browserName == "Microsoft Internet Explorer" && browserVersion >= 4) {
+          MTMUsableBrowser = true;
+        } else if(browserName == "Opera" && browserVersion >= 5) {
+          MTMUsableBrowser = true;
+        }
+        
+        if(MTMUsableBrowser) {
+          // frameset creation
+          document.write('</head>');
+          document.write('<frameset cols="20%,80%">');
+          document.write('<frameset rows="30%,70%">');
+          document.write('<frame src="modules_MTM.html" name="modules"/>');
+          
+          document.write('<frameset frameborder="0" framespacing="0" border="0" cols="*" rows="0,*">');
+          document.write('  <frame marginwidth="0" marginheight="0" src="code_All.html" name="code" noresize="noresize" scrolling="no" frameborder="0" />');
+          document.write('  <frame marginwidth="5" marginheight="5" src="empty-menu_All.html" name="menu" noresize="noresize" scrolling="auto" frameborder="0" />');
+          document.write('</frameset>');
+          document.write('</frameset>');
+          document.write('<frame marginwidth="5" marginheight="5" src="main.html" name="main" noresize>');
+          
+          document.write('</frameset>');
+          document.write('</body>');
+          document.write('</html>');
+          document.close();
+        }
+        
+        // End of script hiding --></script>
+</head>
+<frameset cols="20%,80%">
+<frameset rows="30%,70%">
+<frame name="modules" src="modules_static.html">
+<frame frameborder="0" scrolling="auto" name="menu" src="static-menu_All.html" marginheight="5" marginwidth="5">
+</frameset>
+<frame name="main" src="main.html">
+</frameset>
+</html>
